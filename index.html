@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+DOCTYPE html>
 <html lang="az" data-theme="dark" data-lang="az">
 <head>
 <meta charset="UTF-8">
@@ -680,7 +680,7 @@ input[type=range]::-moz-range-thumb{
 
 <!-- TOP BAR -->
 <div class="topbar">
-  <div class="topbar-logo">◈ LuxEstate</div>
+  <div class="topbar-logo">◈ TofiqEstate</div>
   <div class="topbar-right">
     <div class="lang-toggle">
       <button class="lang-btn active" id="btnAz" onclick="setLang('az')">AZ</button>
@@ -1087,9 +1087,17 @@ function goTo(n){
 
   gCounter.textContent = (cur+1)+' / '+total;
 
-  // Scroll active thumb into view
+  // Scroll active thumb into view (səhifəni tərpətmədən)
   const thumbEl = document.querySelectorAll('.thumb')[cur];
-  thumbEl.scrollIntoView({inline:'center',behavior:'smooth'});
+  if(thumbEl){
+    const container = document.getElementById('thumbStrip');
+    const thumbCenter = thumbEl.offsetLeft + thumbEl.offsetWidth/2;
+    const containerCenter = container.offsetWidth/2;
+    container.scrollTo({
+      left: thumbCenter - containerCenter,
+      behavior: 'smooth'
+    });
+  }
 }
 
 function slide(d){ goTo(cur+d); }
