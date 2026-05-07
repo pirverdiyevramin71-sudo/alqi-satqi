@@ -1,0 +1,1294 @@
+<!DOCTYPE html>
+<html lang="az" data-theme="dark" data-lang="az">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mərkəzdə 4 Otaqlı Həyət Evi — 155 000 AZN</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ══════════════════════════════════════════════
+   ROOT — DARK THEME (default)
+══════════════════════════════════════════════ */
+:root {
+  --gold:        #C8A96E;
+  --gold-dim:    #8A6E3A;
+  --gold-glow:   rgba(200,169,110,0.18);
+  --accent:      #E2C97E;
+  --bg:          #080C10;
+  --bg2:         #0D1117;
+  --surface:     #141A22;
+  --card:        #1A2130;
+  --border:      rgba(255,255,255,0.07);
+  --border-gold: rgba(200,169,110,0.25);
+  --text:        #F4F0E8;
+  --text-dim:    #8A8680;
+  --text-mid:    #C0BAB0;
+  --green:       #22C55E;
+  --blue:        #3B82F6;
+  --red:         #EF4444;
+  --radius:      14px;
+  --shadow:      0 8px 40px rgba(0,0,0,0.55);
+}
+
+[data-theme="light"] {
+  --bg:          #F8F5EF;
+  --bg2:         #EDE9E0;
+  --surface:     #FFFFFF;
+  --card:        #FFFFFF;
+  --border:      rgba(0,0,0,0.08);
+  --border-gold: rgba(180,140,60,0.3);
+  --text:        #1A1209;
+  --text-dim:    #7A7060;
+  --text-mid:    #4A4035;
+  --shadow:      0 8px 40px rgba(0,0,0,0.12);
+}
+
+/* ══════════════════════════════════════════════
+   BASE
+══════════════════════════════════════════════ */
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:'Outfit',sans-serif;
+  font-weight:400;
+  max-width:480px;
+  margin:0 auto;
+  min-height:100vh;
+  transition:background 0.35s,color 0.35s;
+  -webkit-tap-highlight-color:transparent;
+}
+a{text-decoration:none;color:inherit;}
+button{font-family:inherit;cursor:pointer;border:none;background:none;}
+
+/* ══════════════════════════════════════════════
+   TOP BAR
+══════════════════════════════════════════════ */
+.topbar{
+  position:sticky;top:0;z-index:200;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:10px 16px;
+  background:var(--bg);
+  border-bottom:1px solid var(--border);
+  backdrop-filter:blur(12px);
+  -webkit-backdrop-filter:blur(12px);
+}
+.topbar-logo{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.05em;
+  font-weight:600;
+  color:var(--gold);
+  letter-spacing:0.5px;
+}
+.topbar-right{display:flex;align-items:center;gap:8px;}
+.lang-toggle{
+  display:flex;
+  border:1px solid var(--border-gold);
+  border-radius:20px;
+  overflow:hidden;
+}
+.lang-btn{
+  padding:5px 10px;
+  font-size:0.72em;
+  font-weight:500;
+  letter-spacing:0.5px;
+  color:var(--text-dim);
+  background:transparent;
+  transition:0.2s;
+}
+.lang-btn.active{background:var(--gold);color:#000;}
+.theme-toggle{
+  width:34px;height:34px;
+  border-radius:50%;
+  border:1px solid var(--border);
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.0em;
+  color:var(--text-mid);
+  transition:0.2s;
+}
+.theme-toggle:hover{border-color:var(--gold);color:var(--gold);}
+
+/* ══════════════════════════════════════════════
+   GALLERY
+══════════════════════════════════════════════ */
+.gallery-wrap{
+  position:relative;
+  height:340px;
+  overflow:hidden;
+  background:#000;
+}
+.slides-track{
+  display:flex;
+  height:100%;
+  will-change:transform;
+  transition:transform 0.6s cubic-bezier(0.77,0,0.18,1);
+}
+.slide{
+  min-width:100%;height:100%;
+  position:relative;overflow:hidden;
+}
+.slide img{
+  width:100%;height:100%;
+  object-fit:cover;
+  transition:transform 7s ease;
+  display:block;
+}
+.slide.active img{transform:scale(1.06);}
+.slide-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(to bottom,rgba(0,0,0,0.08) 0%,rgba(0,0,0,0) 45%,rgba(0,0,0,0.65) 100%);
+  pointer-events:none;
+}
+
+/* zoom overlay */
+.zoom-overlay{
+  position:fixed;inset:0;z-index:900;
+  background:rgba(0,0,0,0.95);
+  display:none;align-items:center;justify-content:center;
+}
+.zoom-overlay.on{display:flex;}
+.zoom-overlay img{
+  max-width:95%;max-height:85vh;
+  object-fit:contain;
+  border-radius:8px;
+}
+.zoom-close{
+  position:absolute;top:16px;right:16px;
+  color:white;font-size:1.8em;
+  width:40px;height:40px;
+  display:flex;align-items:center;justify-content:center;
+  background:rgba(255,255,255,0.1);
+  border-radius:50%;
+}
+
+.gallery-ui{
+  position:absolute;
+  bottom:14px;left:16px;right:16px;
+  display:flex;align-items:center;justify-content:space-between;
+}
+.g-counter{
+  font-size:0.72em;color:rgba(255,255,255,0.65);
+  letter-spacing:1px;
+}
+.g-dots{display:flex;gap:5px;align-items:center;}
+.g-dot{
+  width:5px;height:5px;
+  background:rgba(255,255,255,0.3);
+  border-radius:50%;
+  cursor:pointer;
+  transition:0.3s;
+}
+.g-dot.on{background:var(--gold);width:16px;border-radius:3px;}
+.g-arrows{display:flex;gap:6px;}
+.g-arr{
+  width:32px;height:32px;
+  background:rgba(255,255,255,0.12);
+  backdrop-filter:blur(6px);
+  border:1px solid rgba(255,255,255,0.15);
+  color:#fff;border-radius:50%;
+  font-size:0.85em;
+  display:flex;align-items:center;justify-content:center;
+  transition:0.2s;
+}
+.g-arr:hover{background:var(--gold);border-color:var(--gold);color:#000;}
+
+/* thumb strip */
+.thumb-strip{
+  display:flex;gap:6px;padding:10px 16px;
+  overflow-x:auto;
+  background:var(--bg2);
+  scrollbar-width:none;
+}
+.thumb-strip::-webkit-scrollbar{display:none;}
+.thumb{
+  width:58px;height:44px;
+  border-radius:7px;
+  object-fit:cover;
+  border:2px solid transparent;
+  cursor:pointer;
+  flex-shrink:0;
+  transition:0.2s;
+  opacity:0.6;
+}
+.thumb.on{border-color:var(--gold);opacity:1;}
+
+/* ══════════════════════════════════════════════
+   STATUS STRIP
+══════════════════════════════════════════════ */
+.status-strip{
+  background:linear-gradient(90deg,var(--gold-dim),var(--gold),var(--gold-dim));
+  padding:7px 16px;
+  display:flex;align-items:center;justify-content:space-between;
+}
+.status-strip span{
+  font-size:0.7em;font-weight:600;
+  color:#000;letter-spacing:1.2px;text-transform:uppercase;
+}
+.live-dot{
+  display:inline-block;
+  width:6px;height:6px;
+  background:#c00;border-radius:50%;
+  margin-right:5px;
+  animation:blink 1.2s infinite;
+}
+@keyframes blink{0%,100%{opacity:1;}50%{opacity:0.15;}}
+
+/* ══════════════════════════════════════════════
+   HEADER BLOCK
+══════════════════════════════════════════════ */
+.header-block{
+  padding:22px 16px 18px;
+  border-bottom:1px solid var(--border);
+}
+.address-line{
+  display:flex;align-items:center;gap:5px;
+  color:var(--gold);font-size:0.78em;font-weight:500;
+  letter-spacing:0.3px;margin-bottom:10px;
+}
+.prop-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.7em;font-weight:700;
+  line-height:1.2;color:var(--text);
+  margin-bottom:16px;
+}
+.price-row{
+  display:flex;align-items:flex-end;
+  justify-content:space-between;flex-wrap:wrap;gap:8px;
+}
+.price-main{
+  font-family:'Cormorant Garamond',serif;
+  font-size:2.4em;font-weight:700;
+  color:var(--gold);line-height:1;
+}
+.price-main small{
+  font-size:0.38em;font-weight:400;
+  color:var(--text-dim);font-family:'Outfit',sans-serif;
+  margin-left:6px;
+}
+.price-meta{font-size:0.8em;color:var(--text-dim);text-align:right;line-height:1.5;}
+.price-meta .good{color:#4ADE80;font-weight:500;}
+
+/* ══════════════════════════════════════════════
+   STATS BAR
+══════════════════════════════════════════════ */
+.stats{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  background:var(--surface);
+  border-bottom:1px solid var(--border);
+}
+.stat{
+  padding:14px 8px;text-align:center;
+  border-right:1px solid var(--border);
+}
+.stat:last-child{border-right:none;}
+.stat-icon{font-size:1.2em;margin-bottom:3px;}
+.stat-val{font-weight:700;font-size:0.95em;color:var(--text);line-height:1.1;}
+.stat-lbl{font-size:0.6em;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.5px;margin-top:2px;}
+
+/* ══════════════════════════════════════════════
+   SECTIONS
+══════════════════════════════════════════════ */
+.section{
+  padding:20px 16px;
+  border-bottom:1px solid var(--border);
+}
+.sec-label{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.05em;font-weight:600;
+  color:var(--gold);
+  margin-bottom:14px;
+  display:flex;align-items:center;gap:8px;
+  letter-spacing:0.2px;
+}
+.sec-label::after{
+  content:'';flex:1;height:1px;
+  background:linear-gradient(to right,var(--border-gold),transparent);
+}
+
+/* ══════════════════════════════════════════════
+   DETAIL GRID
+══════════════════════════════════════════════ */
+.detail-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:8px;
+}
+.d-item{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:10px;
+  padding:13px;
+  display:flex;align-items:center;gap:10px;
+  transition:0.2s;
+}
+.d-item:hover{border-color:var(--border-gold);}
+.d-ico{
+  width:34px;height:34px;
+  background:var(--gold-glow);
+  border-radius:8px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.05em;flex-shrink:0;
+}
+.d-val{font-weight:600;font-size:0.87em;color:var(--text);line-height:1.2;}
+.d-lbl{font-size:0.64em;color:var(--text-dim);margin-top:2px;}
+
+/* ══════════════════════════════════════════════
+   MORTGAGE CALCULATOR
+══════════════════════════════════════════════ */
+.mort-box{
+  background:var(--card);
+  border:1px solid var(--border-gold);
+  border-radius:var(--radius);
+  padding:18px;
+}
+.mort-row{margin-bottom:14px;}
+.mort-label{
+  display:flex;justify-content:space-between;
+  font-size:0.78em;color:var(--text-dim);margin-bottom:7px;
+}
+.mort-label span{color:var(--gold);font-weight:600;}
+input[type=range]{
+  width:100%;
+  -webkit-appearance:none;
+  appearance:none;
+  height:4px;
+  border-radius:2px;
+  background:var(--border);
+  outline:none;
+}
+input[type=range]::-webkit-slider-thumb{
+  -webkit-appearance:none;
+  appearance:none;
+  width:18px;height:18px;
+  border-radius:50%;
+  background:var(--gold);
+  cursor:pointer;
+  box-shadow:0 0 0 3px var(--gold-glow);
+}
+input[type=range]::-moz-range-thumb{
+  width:18px;height:18px;
+  border-radius:50%;
+  background:var(--gold);
+  cursor:pointer;
+  border:none;
+  box-shadow:0 0 0 3px var(--gold-glow);
+}
+.mort-result{
+  background:var(--surface);
+  border-radius:10px;
+  padding:14px;
+  display:flex;align-items:center;justify-content:space-between;
+}
+.mort-monthly{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.6em;font-weight:700;
+  color:var(--gold);
+}
+.mort-detail{font-size:0.72em;color:var(--text-dim);line-height:1.6;}
+
+/* ══════════════════════════════════════════════
+   PRICE INDEX CHART
+══════════════════════════════════════════════ */
+.price-chart-wrap{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  padding:16px;
+}
+.chart-bars{
+  display:flex;
+  align-items:flex-end;
+  gap:12px;
+  height:80px;
+  margin-bottom:10px;
+}
+.chart-bar-wrap{
+  display:flex;flex-direction:column;align-items:center;
+  flex:1;gap:5px;
+}
+.chart-bar{
+  width:100%;
+  border-radius:5px 5px 0 0;
+  transition:height 0.5s cubic-bezier(0.25,1,0.5,1);
+}
+.chart-bar-val{
+  font-size:0.65em;font-weight:600;color:var(--text-dim);
+  white-space:nowrap;
+}
+.chart-bar-lbl{font-size:0.6em;color:var(--text-dim);text-align:center;}
+.price-saving{
+  display:flex;align-items:center;gap:10px;
+  background:rgba(74,222,128,0.08);
+  border:1px solid rgba(74,222,128,0.2);
+  border-radius:8px;
+  padding:10px 12px;
+  font-size:0.8em;
+  color:#4ADE80;
+  font-weight:500;
+}
+
+/* ══════════════════════════════════════════════
+   TIMELINE
+══════════════════════════════════════════════ */
+.timeline{
+  display:flex;flex-direction:column;
+  position:relative;
+}
+.timeline::before{
+  content:'';
+  position:absolute;left:19px;top:0;bottom:0;
+  width:1px;background:var(--border-gold);
+}
+.tl-item{
+  display:flex;gap:14px;
+  padding-bottom:18px;
+  position:relative;
+}
+.tl-item:last-child{padding-bottom:0;}
+.tl-dot{
+  width:10px;height:10px;
+  background:var(--gold);
+  border-radius:50%;
+  margin-top:4px;
+  flex-shrink:0;
+  margin-left:15px;
+  position:relative;z-index:1;
+  box-shadow:0 0 0 4px var(--gold-glow);
+}
+.tl-year{
+  font-weight:700;font-size:0.8em;
+  color:var(--gold);margin-bottom:2px;
+}
+.tl-text{font-size:0.82em;color:var(--text-mid);line-height:1.55;}
+
+/* ══════════════════════════════════════════════
+   NOISE LEVEL
+══════════════════════════════════════════════ */
+.noise-bar-wrap{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  padding:16px;
+}
+.noise-labels{
+  display:flex;justify-content:space-between;
+  font-size:0.65em;color:var(--text-dim);
+  margin-bottom:8px;
+}
+.noise-track{
+  height:10px;
+  border-radius:5px;
+  background:linear-gradient(to right,#4ADE80 0%,#FACC15 50%,#EF4444 100%);
+  position:relative;
+  margin-bottom:10px;
+}
+.noise-needle{
+  position:absolute;
+  top:-4px;
+  width:18px;height:18px;
+  background:white;
+  border:3px solid #333;
+  border-radius:50%;
+  transform:translateX(-50%);
+  box-shadow:0 2px 8px rgba(0,0,0,0.4);
+  left:18%;
+}
+.noise-label-main{
+  text-align:center;
+  font-size:0.82em;font-weight:600;
+  color:#4ADE80;
+}
+
+/* ══════════════════════════════════════════════
+   HIGHLIGHTS
+══════════════════════════════════════════════ */
+.highlight-list{display:flex;flex-direction:column;gap:8px;}
+.hl{
+  display:flex;align-items:flex-start;gap:12px;
+  background:var(--card);
+  border:1px solid var(--border);
+  border-left:3px solid var(--gold);
+  border-radius:0 10px 10px 0;
+  padding:12px;
+  font-size:0.83em;color:var(--text-mid);
+}
+.hl strong{color:var(--text);display:block;margin-bottom:2px;font-size:0.92em;}
+
+/* ══════════════════════════════════════════════
+   TAGS
+══════════════════════════════════════════════ */
+.tags{display:flex;flex-wrap:wrap;gap:7px;}
+.tag{
+  padding:6px 12px;
+  border:1px solid var(--border);
+  border-radius:20px;
+  font-size:0.75em;
+  color:var(--text-dim);
+  background:var(--card);
+  transition:0.2s;
+  cursor:default;
+}
+.tag:hover{border-color:var(--gold);color:var(--gold);}
+
+/* ══════════════════════════════════════════════
+   DESCRIPTION
+══════════════════════════════════════════════ */
+.desc{
+  font-size:0.87em;line-height:1.8;
+  color:var(--text-mid);
+}
+.desc strong{color:var(--text);}
+
+/* ══════════════════════════════════════════════
+   COMMUNAL COSTS
+══════════════════════════════════════════════ */
+.comm-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:8px;
+}
+.comm-item{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:10px;padding:12px;text-align:center;
+}
+.comm-icon{font-size:1.4em;margin-bottom:4px;}
+.comm-val{font-size:0.8em;font-weight:600;color:var(--text);}
+.comm-lbl{font-size:0.62em;color:var(--text-dim);margin-top:2px;}
+
+/* ══════════════════════════════════════════════
+   MAP
+══════════════════════════════════════════════ */
+.map-wrap{
+  border-radius:var(--radius);
+  overflow:hidden;
+  height:240px;
+  position:relative;
+}
+.map-wrap iframe{width:100%;height:100%;border:0;display:block;}
+.nearby-row{
+  display:flex;flex-wrap:wrap;gap:7px;margin-top:12px;
+}
+.nb{
+  display:flex;align-items:center;gap:5px;
+  background:var(--card);border:1px solid var(--border);
+  border-radius:7px;padding:6px 10px;
+  font-size:0.73em;color:var(--text-mid);
+}
+
+/* ══════════════════════════════════════════════
+   VIDEO
+══════════════════════════════════════════════ */
+.video-wrap{
+  border-radius:var(--radius);
+  overflow:hidden;aspect-ratio:16/9;
+}
+.video-wrap iframe{width:100%;height:100%;border:none;display:block;}
+
+/* ══════════════════════════════════════════════
+   AGENT
+══════════════════════════════════════════════ */
+.agent-card{
+  background:var(--card);
+  border:1px solid var(--border-gold);
+  border-radius:var(--radius);padding:16px;
+  display:flex;align-items:center;gap:14px;
+}
+.agent-ava{
+  width:54px;height:54px;
+  background:linear-gradient(135deg,var(--gold),#7A5520);
+  border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.5em;font-weight:700;color:white;
+  flex-shrink:0;
+}
+.agent-name{font-weight:600;font-size:0.93em;color:var(--text);}
+.agent-role{font-size:0.72em;color:var(--text-dim);margin-top:2px;}
+.agent-online{
+  margin-top:6px;display:inline-flex;align-items:center;gap:4px;
+  background:rgba(34,197,94,0.1);border:1px solid rgba(34,197,94,0.25);
+  color:var(--green);font-size:0.68em;padding:3px 8px;border-radius:20px;
+}
+
+/* ══════════════════════════════════════════════
+   STICKY CTA
+══════════════════════════════════════════════ */
+.cta-area{
+  position:sticky;bottom:0;z-index:150;
+  padding:12px 16px 16px;
+  background:linear-gradient(to top,var(--bg) 85%,transparent);
+  border-top:1px solid var(--border);
+  transition:transform 0.35s ease;
+}
+.cta-area.hidden{transform:translateY(calc(100% + 20px));}
+.cta-row{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px;}
+.cta-btn{
+  display:flex;align-items:center;justify-content:center;gap:7px;
+  padding:14px;border-radius:12px;
+  font-size:0.88em;font-weight:600;letter-spacing:0.2px;
+  transition:0.2s;text-decoration:none;
+  color:white;
+}
+.cta-wa{background:var(--green);}
+.cta-wa:hover{filter:brightness(1.1);transform:translateY(-1px);}
+.cta-call{background:var(--blue);}
+.cta-call:hover{filter:brightness(1.1);transform:translateY(-1px);}
+.cta-share{
+  display:flex;align-items:center;justify-content:center;gap:7px;
+  padding:11px;border-radius:12px;
+  background:transparent;border:1px solid var(--border);
+  color:var(--text-dim);font-size:0.82em;width:100%;
+  transition:0.2s;
+}
+.cta-share:hover{border-color:var(--gold);color:var(--gold);}
+
+/* ══════════════════════════════════════════════
+   FOOTER
+══════════════════════════════════════════════ */
+.footer{
+  padding:16px;text-align:center;
+  font-size:0.7em;color:#555;
+  border-top:1px solid var(--border);
+}
+
+/* ══════════════════════════════════════════════
+   TOAST
+══════════════════════════════════════════════ */
+.toast{
+  position:fixed;bottom:100px;left:50%;
+  transform:translateX(-50%) translateY(12px);
+  background:var(--gold);color:#000;
+  padding:9px 20px;border-radius:30px;
+  font-size:0.8em;font-weight:600;
+  opacity:0;transition:0.3s;pointer-events:none;
+  z-index:999;white-space:nowrap;
+}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+
+/* Scrollbar */
+::-webkit-scrollbar{width:5px;}
+::-webkit-scrollbar-track{background:transparent;}
+::-webkit-scrollbar-thumb{background:var(--border);border-radius:3px;}
+</style>
+</head>
+<body>
+
+<!-- ZOOM OVERLAY -->
+<div class="zoom-overlay" id="zoomOverlay" onclick="closeZoom()">
+  <img id="zoomImg" src="" alt="Böyüdülmüş şəkil">
+  <button class="zoom-close" onclick="closeZoom()">✕</button>
+</div>
+
+<!-- TOP BAR -->
+<div class="topbar">
+  <div class="topbar-logo">◈ LuxEstate</div>
+  <div class="topbar-right">
+    <div class="lang-toggle">
+      <button class="lang-btn active" id="btnAz" onclick="setLang('az')">AZ</button>
+      <button class="lang-btn" id="btnRu" onclick="setLang('ru')">RU</button>
+    </div>
+    <button class="theme-toggle" id="themeBtn" onclick="toggleTheme()" title="Rəng rejimini dəyiş">🌙</button>
+  </div>
+</div>
+
+<!-- GALLERY -->
+<div class="gallery-wrap" id="galleryWrap">
+  <div class="slides-track" id="slidesTrack">
+    <div class="slide active"><img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=900" alt="Xarici görünüş" ondblclick="openZoom(this)"><div class="slide-overlay"></div></div>
+    <div class="slide"><img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=900" alt="Qonaq otağı" ondblclick="openZoom(this)"><div class="slide-overlay"></div></div>
+    <div class="slide"><img src="https://images.unsplash.com/photo-1600573472550-8090b5e0745e?w=900" alt="Mətbəx" ondblclick="openZoom(this)"><div class="slide-overlay"></div></div>
+    <div class="slide"><img src="https://images.unsplash.com/photo-1600566753086-00f18f6b0050?w=900" alt="Yataq otağı" ondblclick="openZoom(this)"><div class="slide-overlay"></div></div>
+    <div class="slide"><img src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=900" alt="Həyət" ondblclick="openZoom(this)"><div class="slide-overlay"></div></div>
+  </div>
+  <div class="gallery-ui">
+    <div class="g-counter" id="gCounter">1 / 5</div>
+    <div class="g-dots" id="gDots"></div>
+    <div class="g-arrows">
+      <button class="g-arr" onclick="slide(-1)" aria-label="Əvvəlki">‹</button>
+      <button class="g-arr" onclick="slide(1)" aria-label="Sonrakı">›</button>
+    </div>
+  </div>
+</div>
+
+<!-- THUMB STRIP -->
+<div class="thumb-strip" id="thumbStrip"></div>
+
+<!-- STATUS STRIP -->
+<div class="status-strip">
+  <span><span class="live-dot"></span><span data-az="Aktiv elan" data-ru="Активное объявление">Aktiv elan</span></span>
+  <span><span data-az="Nəsimi r., Bakı" data-ru="Насими р., Баку">Nəsimi r., Bakı</span></span>
+  <span>ID: #BK-2024</span>
+</div>
+
+<!-- HEADER -->
+<div class="header-block">
+  <div class="address-line">
+    <span>📍</span>
+    <span data-az="S. Rüstəmov küçəsi, Nəsimi rayonu" data-ru="Ул. С. Рустамова, Насиминский р-н">S. Rüstəmov küçəsi, Nəsimi rayonu</span>
+  </div>
+  <h1 class="prop-title" data-az="Mərkəzdə 4 Otaqlı<br>Dəbdəbəli Həyət Evi" data-ru="Роскошный 4-комнатный<br>Особняк в центре">Mərkəzdə 4 Otaqlı<br>Dəbdəbəli Həyət Evi</h1>
+  <div class="price-row">
+    <div class="price-main">155 000 <small>AZN</small></div>
+    <div class="price-meta">
+      ~861 AZN/m²<br>
+      <span class="good" data-az="✓ Kredit uyğundur" data-ru="✓ Подходит для ипотеки">✓ Kredit uyğundur</span>
+    </div>
+  </div>
+</div>
+
+<!-- STATS -->
+<div class="stats">
+  <div class="stat"><div class="stat-icon">🛏</div><div class="stat-val">4</div><div class="stat-lbl" data-az="Otaq" data-ru="Комнат">Otaq</div></div>
+  <div class="stat"><div class="stat-icon">📐</div><div class="stat-val">180</div><div class="stat-lbl">m²</div></div>
+  <div class="stat"><div class="stat-icon">🏗</div><div class="stat-val">2</div><div class="stat-lbl" data-az="Mərtəbə" data-ru="Этажей">Mərtəbə</div></div>
+  <div class="stat"><div class="stat-icon">📅</div><div class="stat-val">2018</div><div class="stat-lbl" data-az="Təmir" data-ru="Ремонт">Təmir</div></div>
+</div>
+
+<!-- DETAIL GRID -->
+<div class="section">
+  <div class="sec-label" data-az="📋 Ətraflı Məlumatlar" data-ru="📋 Подробная информация">📋 Ətraflı Məlumatlar</div>
+  <div class="detail-grid">
+    <div class="d-item"><div class="d-ico">🏠</div><div><div class="d-val" data-az="Həyət evi" data-ru="Особняк">Həyət evi</div><div class="d-lbl" data-az="Əmlak növü" data-ru="Тип недвижимости">Əmlak növü</div></div></div>
+    <div class="d-item"><div class="d-ico">📏</div><div><div class="d-val">4 sot</div><div class="d-lbl" data-az="Torpaq sahəsi" data-ru="Площадь участка">Torpaq sahəsi</div></div></div>
+    <div class="d-item"><div class="d-ico">🚪</div><div><div class="d-val" data-az="3 yataq" data-ru="3 спальни">3 yataq</div><div class="d-lbl" data-az="Yataq otaqları" data-ru="Спальные комнаты">Yataq otaqları</div></div></div>
+    <div class="d-item"><div class="d-ico">🛁</div><div><div class="d-val">2</div><div class="d-lbl" data-az="Vanna/Tualet" data-ru="Санузлы">Vanna/Tualet</div></div></div>
+    <div class="d-item"><div class="d-ico">🚗</div><div><div class="d-val" data-az="2 avtomobil" data-ru="2 автомобиля">2 avtomobil</div><div class="d-lbl" data-az="Qapalı qaraj" data-ru="Закрытый гараж">Qapalı qaraj</div></div></div>
+    <div class="d-item"><div class="d-ico">🔑</div><div><div class="d-val" data-az="Qeydiyyat var" data-ru="Оформлено">Qeydiyyat var</div><div class="d-lbl" data-az="Sənəd vəziyyəti" data-ru="Документы">Sənəd vəziyyəti</div></div></div>
+    <div class="d-item"><div class="d-ico">🪟</div><div><div class="d-val" data-az="3 qat şüşə" data-ru="Тройное стекло">3 qat şüşə</div><div class="d-lbl" data-az="Pəncərə" data-ru="Окна">Pəncərə</div></div></div>
+    <div class="d-item"><div class="d-ico">🧭</div><div><div class="d-val" data-az="Cənub-Şərq" data-ru="Юго-Восток">Cənub-Şərq</div><div class="d-lbl" data-az="İstiqamət" data-ru="Ориентация">İstiqamət</div></div></div>
+  </div>
+</div>
+
+<!-- MORTGAGE CALCULATOR -->
+<div class="section">
+  <div class="sec-label" data-az="🏦 İpoteka Kalkulyatoru" data-ru="🏦 Ипотечный калькулятор">🏦 İpoteka Kalkulyatoru</div>
+  <div class="mort-box">
+    <div class="mort-row">
+      <div class="mort-label"><span data-az="İlkin ödəniş" data-ru="Первоначальный взнос">İlkin ödəniş</span><span id="dpVal">20% — 31 000 AZN</span></div>
+      <input type="range" id="dpRange" min="10" max="50" value="20" step="5" oninput="calcMort()">
+    </div>
+    <div class="mort-row">
+      <div class="mort-label"><span data-az="Kredit müddəti" data-ru="Срок кредита">Kredit müddəti</span><span id="termVal" data-az="15 il" data-ru="15 лет">15 il</span></div>
+      <input type="range" id="termRange" min="5" max="30" value="15" step="5" oninput="calcMort()">
+    </div>
+    <div class="mort-row">
+      <div class="mort-label"><span data-az="İllik faiz" data-ru="Годовой процент">İllik faiz</span><span id="rateVal">8%</span></div>
+      <input type="range" id="rateRange" min="6" max="15" value="8" step="0.5" oninput="calcMort()">
+    </div>
+    <div class="mort-result">
+      <div>
+        <div style="font-size:0.7em;color:var(--text-dim);margin-bottom:3px;" data-az="Aylıq ödəniş" data-ru="Ежемесячный платёж">Aylıq ödəniş</div>
+        <div class="mort-monthly" id="mortMonthly">1 147 AZN</div>
+      </div>
+      <div class="mort-detail" id="mortDetail">
+        Kredit: 124 000 AZN<br>
+        Ümumi: 206 460 AZN
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PRICE INDEX -->
+<div class="section">
+  <div class="sec-label" data-az="📊 Qiymət İndeksi" data-ru="📊 Ценовой индекс">📊 Qiymət İndeksi</div>
+  <div class="price-chart-wrap">
+    <div class="chart-bars">
+      <div class="chart-bar-wrap">
+        <div class="chart-bar-val">861</div>
+        <div class="chart-bar" style="height:66%;background:linear-gradient(to top,#8A6E3A,#C8A96E);"></div>
+        <div class="chart-bar-lbl" data-az="Bu ev" data-ru="Этот дом">Bu ev</div>
+      </div>
+      <div class="chart-bar-wrap">
+        <div class="chart-bar-val">1 050</div>
+        <div class="chart-bar" style="height:80%;background:var(--surface);border:1px solid var(--border);"></div>
+        <div class="chart-bar-lbl" data-az="Nəsimi ort." data-ru="Ср. Насими">Nəsimi ort.</div>
+      </div>
+      <div class="chart-bar-wrap">
+        <div class="chart-bar-val">1 320</div>
+        <div class="chart-bar" style="height:100%;background:var(--surface);border:1px solid var(--border);"></div>
+        <div class="chart-bar-lbl" data-az="Mərkəz maks." data-ru="Макс. центр">Mərkəz maks.</div>
+      </div>
+    </div>
+    <div class="price-saving">
+      <span style="font-size:1.3em">📉</span>
+      <span data-az="Rayon ortalamasından 18% AŞAĞI qiymətə alırsınız — fərq ~34 980 AZN" data-ru="На 18% НИЖЕ районного среднего — разница ~34 980 AZN">Rayon ortalamasından 18% AŞAĞI qiymətə alırsınız — fərq ~34 980 AZN</span>
+    </div>
+  </div>
+</div>
+
+<!-- TIMELINE -->
+<div class="section">
+  <div class="sec-label" data-az="🕐 Əmlakın Tarixçəsi" data-ru="🕐 История объекта">🕐 Əmlakın Tarixçəsi</div>
+  <div class="timeline">
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div>
+        <div class="tl-year">2012</div>
+        <div class="tl-text" data-az="Bina tikilib. Monolitik-beton konstruksiya, 4 sot torpaq üzərində 2 mərtəbəli ev." data-ru="Дом построен. Монолитно-бетонная конструкция, 2-этажный дом на 4 сотках земли.">Bina tikilib. Monolitik-beton konstruksiya, 4 sot torpaq üzərində 2 mərtəbəli ev.</div>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div>
+        <div class="tl-year">2018</div>
+        <div class="tl-text" data-az="Tam əsaslı təmir: mətbəx dəyişdirildi, parket döşəmə quraşdırıldı, bütün elektrik xətləri yeniləndi. İtaliya dekorativ suvağı." data-ru="Капитальный ремонт: заменена кухня, установлен паркет, обновлена вся электрика. Итальянская декоративная штукатурка.">Tam əsaslı təmir: mətbəx dəyişdirildi, parket döşəmə quraşdırıldı, bütün elektrik xətləri yeniləndi. İtaliya dekorativ suvağı.</div>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div>
+        <div class="tl-year">2021</div>
+        <div class="tl-text" data-az="Smart ev sistemi quraşdırıldı. Bütün kameralar və kondisionerlər telefondan idarə olunur. Fiber internet 1 Gbit/s." data-ru="Установлена система умного дома. Все камеры и кондиционеры управляются с телефона. Оптоволокно 1 Гбит/с.">Smart ev sistemi quraşdırıldı. Bütün kameralar və kondisionerlər telefondan idarə olunur. Fiber internet 1 Gbit/s.</div>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div>
+        <div class="tl-year">2023</div>
+        <div class="tl-text" data-az="Yeni mərkəzi istilik sistemi (qaz kondenser qazan) quraşdırıldı. Həyətin tam abadlaşdırılması — manqal guşəsi, uşaq meydançası." data-ru="Установлен новый газовый конденсационный котёл. Благоустройство двора — мангальная зона, детская площадка.">Yeni mərkəzi istilik sistemi (qaz kondenser qazan) quraşdırıldı. Həyətin tam abadlaşdırılması — manqal guşəsi, uşaq meydançası.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- NOISE LEVEL -->
+<div class="section">
+  <div class="sec-label" data-az="🔊 Ətraf Mühit Göstəriciləri" data-ru="🔊 Показатели окружения">🔊 Ətraf Mühit Göstəriciləri</div>
+  <div class="noise-bar-wrap">
+    <div class="noise-labels">
+      <span data-az="Tam sakit" data-ru="Тихо">Tam sakit</span>
+      <span data-az="Orta" data-ru="Средне">Orta</span>
+      <span data-az="Canlı" data-ru="Шумно">Canlı</span>
+    </div>
+    <div class="noise-track">
+      <div class="noise-needle" style="left:18%"></div>
+    </div>
+    <div class="noise-label-main" data-az="🍃 Sakit küçə — Az trafikli, ağaclıq zona" data-ru="🍃 Тихая улица — малый трафик, зелёная зона">🍃 Sakit küçə — Az trafikli, ağaclıq zona</div>
+  </div>
+  <div style="margin-top:10px;display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+    <div class="d-item"><div class="d-ico">☀️</div><div><div class="d-val" data-az="Cənub-Şərq" data-ru="Юго-Восток">Cənub-Şərq</div><div class="d-lbl" data-az="Günəş istiqaməti" data-ru="Сторона света">Günəş istiqaməti</div></div></div>
+    <div class="d-item"><div class="d-ico">🚌</div><div><div class="d-val">1, 5, 88</div><div class="d-lbl" data-az="Avtobus marşrutları" data-ru="Маршруты автобусов">Avtobus marşrutları</div></div></div>
+  </div>
+</div>
+
+<!-- HIGHLIGHTS -->
+<div class="section">
+  <div class="sec-label" data-az="✨ Üstün Cəhətlər" data-ru="✨ Ключевые преимущества">✨ Üstün Cəhətlər</div>
+  <div class="highlight-list">
+    <div class="hl"><span style="font-size:1.3em">🌳</span><div><strong data-az="Geniş Həyət Bağı" data-ru="Просторный двор-сад">Geniş Həyət Bağı</strong><span data-az="Manqal guşəsi, dekorativ ağaclar, piknik zonası. Yaz-yay mövsümlərini ailə ilə keçirmək üçün ideal." data-ru="Мангальная зона, декоративные деревья, место для пикника. Идеально для семейного отдыха.">Manqal guşəsi, dekorativ ağaclar, piknik zonası. Yaz-yay mövsümlərini ailə ilə keçirmək üçün ideal.</span></div></div>
+    <div class="hl"><span style="font-size:1.3em">🛡</span><div><strong data-az="8 Kanalı Kamera Sistemi" data-ru="8-канальная система видеонаблюдения">8 Kanalı Kamera Sistemi</strong><span data-az="Hərəkət sensoru, ağıllı zəng sistemi. Telefondan 24/7 izlənilir." data-ru="Датчики движения, умный дверной звонок. Наблюдение с телефона 24/7.">Hərəkət sensoru, ağıllı zəng sistemi. Telefondan 24/7 izlənilir.</span></div></div>
+    <div class="hl"><span style="font-size:1.3em">🍳</span><div><strong data-az="Alman Texnikası ilə Premium Mətbəx" data-ru="Премиум-кухня с немецкой техникой">Alman Texnikası ilə Premium Mətbəx</strong><span data-az="İtalyan kafel, qranit tezgah, quraşdırılmış soyuducu, sobalar." data-ru="Итальянская плитка, гранитная столешница, встроенный холодильник.">İtalyan kafel, qranit tezgah, quraşdırılmış soyuducu, sobalar.</span></div></div>
+    <div class="hl"><span style="font-size:1.3em">📡</span><div><strong data-az="Smart Ev — Tam Avtomatik" data-ru="Умный дом — полная автоматизация">Smart Ev — Tam Avtomatik</strong><span data-az="İşıqlar, kondisionerlər, qapılar — hamısı bir tətbiqdən idarə olunur." data-ru="Свет, кондиционеры, ворота — всё управляется из одного приложения.">İşıqlar, kondisionerlər, qapılar — hamısı bir tətbiqdən idarə olunur.</span></div></div>
+  </div>
+</div>
+
+<!-- DESCRIPTION -->
+<div class="section">
+  <div class="sec-label" data-az="📝 Ətraflı Təsvir" data-ru="📝 Подробное описание">📝 Ətraflı Təsvir</div>
+  <p class="desc" data-az="Mərkəzi Nəsimi rayonunda yerləşən bu <strong>premium səviyyəli həyət evi</strong> ailəniz üçün ən yaxşı investisiyadır. 2018-ci ildə tam əsaslı təmir edilib, hər detalına diqqət ayrılıb. Bütün otaqlar <strong>cənub-şərq istiqamətinə</strong> baxır, gün boyu günəş işığı alır.<br><br>Mətbəx mebeli, qarderoblar, parket döşəmə quraşdırılıb. Divarlarda İtaliya dekorativ suvağı istifadə olunub. Birinci mərtəbədə geniş qonaq otağı, mətbəx-yemək otağı, texnik otaq var. İkinci mərtəbədə 3 yataq otağı, 2 vanna otağı yerləşir.<br><br>Sənədlər qaydasındadır, <strong>ipoteka kreditinə uyğundur</strong>. Köçmə dərhal mümkündür." data-ru="Этот <strong>премиальный особняк</strong> в центральном Насиминском районе — лучшая инвестиция для вашей семьи. Капитально отремонтирован в 2018 году, каждая деталь продумана. Все комнаты выходят на <strong>юго-восточную сторону</strong>, весь день залиты солнцем.<br><br>Установлены кухонная мебель, гардеробы, паркетный пол. На стенах — итальянская декоративная штукатурка. Первый этаж: просторная гостиная, кухня-столовая, техническое помещение. Второй этаж: 3 спальни, 2 ванные комнаты.<br><br>Документы в порядке, <strong>подходит для ипотеки</strong>. Возможен немедленный въезд.">
+    Mərkəzi Nəsimi rayonunda yerləşən bu <strong>premium səviyyəli həyət evi</strong> ailəniz üçün ən yaxşı investisiyadır. 2018-ci ildə tam əsaslı təmir edilib, hər detalına diqqət ayrılıb. Bütün otaqlar <strong>cənub-şərq istiqamətinə</strong> baxır, gün boyu günəş işığı alır.<br><br>Mətbəx mebeli, qarderoblar, parket döşəmə quraşdırılıb. Divarlarda İtaliya dekorativ suvağı istifadə olunub. Birinci mərtəbədə geniş qonaq otağı, mətbəx-yemək otağı, texnik otaq var. İkinci mərtəbədə 3 yataq otağı, 2 vanna otağı yerləşir.<br><br>Sənədlər qaydasındadır, <strong>ipoteka kreditinə uyğundur</strong>. Köçmə dərhal mümkündür.
+  </p>
+</div>
+
+<!-- COMMUNAL COSTS -->
+<div class="section">
+  <div class="sec-label" data-az="💡 Aylıq Kommunal Xərclər (təxmini)" data-ru="💡 Ежемесячные коммунальные расходы (прим.)">💡 Aylıq Kommunal Xərclər (təxmini)</div>
+  <div class="comm-grid">
+    <div class="comm-item"><div class="comm-icon">⚡</div><div class="comm-val">35–50 AZN</div><div class="comm-lbl" data-az="Elektrik" data-ru="Электричество">Elektrik</div></div>
+    <div class="comm-item"><div class="comm-icon">🔥</div><div class="comm-val">40–60 AZN</div><div class="comm-lbl" data-az="Qaz" data-ru="Газ">Qaz</div></div>
+    <div class="comm-item"><div class="comm-icon">💧</div><div class="comm-val">15–20 AZN</div><div class="comm-lbl" data-az="Su" data-ru="Вода">Su</div></div>
+  </div>
+</div>
+
+<!-- FEATURES TAGS -->
+<div class="section">
+  <div class="sec-label" data-az="🏅 Əlverişliklər" data-ru="🏅 Удобства">🏅 Əlverişliklər</div>
+  <div class="tags" id="tagsDiv"></div>
+</div>
+
+<!-- MAP -->
+<div class="section">
+  <div class="sec-label" data-az="📍 Xəritədə Yerləşmə" data-ru="📍 Расположение на карте">📍 Xəritədə Yerləşmə</div>
+  <div class="map-wrap">
+    <iframe
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3038.9!2d49.8671!3d40.3777!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40307d6bd90ab99b%3A0x7f1d757bc3e95b11!2sNasimi%20District%2C%20Baku!5e0!3m2!1sen!2saz!4v1715000000"
+      width="100%" height="240"
+      style="border:0;border-radius:12px;"
+      allowfullscreen=""
+      loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade"
+      title="Xəritədə yer">
+    </iframe>
+  </div>
+  <div class="nearby-row">
+    <div class="nb">🏫 <span data-az="5 dəq — Məktəb" data-ru="5 мин — Школа">5 dəq — Məktəb</span></div>
+    <div class="nb">🏥 <span data-az="7 dəq — Xəstəxana" data-ru="7 мин — Больница">7 dəq — Xəstəxana</span></div>
+    <div class="nb">🛒 <span data-az="3 dəq — Market" data-ru="3 мин — Магазин">3 dəq — Market</span></div>
+    <div class="nb">🚇 <span data-az="8 dəq — Metro" data-ru="8 мин — Метро">8 dəq — Metro</span></div>
+    <div class="nb">🌳 <span data-az="2 dəq — Park" data-ru="2 мин — Парк">2 dəq — Park</span></div>
+    <div class="nb">🏦 <span data-az="5 dəq — Bank" data-ru="5 мин — Банк">5 dəq — Bank</span></div>
+  </div>
+</div>
+
+<!-- VIDEO -->
+<div class="section">
+  <div class="sec-label" data-az="🎥 Video Tur" data-ru="🎥 Видеотур">🎥 Video Tur</div>
+  <div class="video-wrap">
+    <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+      title="Ev turu" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+    </iframe>
+  </div>
+</div>
+
+<!-- AGENT -->
+<div class="section">
+  <div class="sec-label" data-az="👤 Əlaqə Şəxsi" data-ru="👤 Контактное лицо">👤 Əlaqə Şəxsi</div>
+  <div class="agent-card">
+    <div class="agent-ava">E</div>
+    <div>
+      <div class="agent-name">Emin Məmmədov</div>
+      <div class="agent-role" data-az="Daşınmaz Əmlak Mütəxəssisi · 7 il təcrübə" data-ru="Специалист по недвижимости · 7 лет опыта">Daşınmaz Əmlak Mütəxəssisi · 7 il təcrübə</div>
+      <div class="agent-online">
+        <span style="width:5px;height:5px;background:var(--green);border-radius:50%;display:inline-block;"></span>
+        <span data-az="İndi aktiv" data-ru="Сейчас онлайн">İndi aktiv</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- STICKY CTA -->
+<div class="cta-area" id="ctaArea">
+  <div class="cta-row">
+    <a href="https://wa.me/994501234567?text=Salam%2C%20%23BK-2024%20N%C9%99simi%20h%C9%99y%C9%99t%20evi%20bar%C9%99d%C9%99%20m%C9%99lumat%20almaq%20ist%C9%99yir%C9%99m."
+       class="cta-btn cta-wa" id="ctaWa" target="_blank" rel="noopener">
+      <svg width="19" height="19" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.121 1.531 5.847L0 24l6.335-1.508C8.054 23.455 10 24 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.885 0-3.636-.493-5.148-1.35L3 21.5l.868-3.796A9.959 9.959 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+      <span data-az="WhatsApp" data-ru="WhatsApp">WhatsApp</span>
+    </a>
+    <a href="tel:+994501234567" class="cta-btn cta-call">
+      <svg width="19" height="19" viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+      <span data-az="Zəng Et" data-ru="Позвонить">Zəng Et</span>
+    </a>
+  </div>
+  <button class="cta-share" onclick="shareLink()">
+    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+    <span data-az="Bu elanı paylaş" data-ru="Поделиться объявлением">Bu elanı paylaş</span>
+  </button>
+</div>
+
+<div class="footer">
+  <span data-az="Elan tarixi: 7 May 2024 · Baxış: " data-ru="Дата публикации: 7 Мая 2024 · Просмотры: ">Elan tarixi: 7 May 2024 · Baxış: </span><span id="views">—</span><br>
+  <span style="color:#555;" data-az="Məlumatlar satıcı tərəfindən təqdim edilib" data-ru="Информация предоставлена продавцом">Məlumatlar satıcı tərəfindən təqdim edilib</span>
+</div>
+
+<div class="toast" id="toast" data-az="🔗 Link kopyalandı!" data-ru="🔗 Ссылка скопирована!">🔗 Link kopyalandı!</div>
+
+<!-- ═══════════════════════ JS ═══════════════════════ -->
+<script>
+/* ────────────────────────────────────────────────
+   THEME TOGGLE
+──────────────────────────────────────────────── */
+const html = document.documentElement;
+const themeBtn = document.getElementById('themeBtn');
+
+function toggleTheme(){
+  const isDark = html.getAttribute('data-theme')==='dark';
+  html.setAttribute('data-theme', isDark ? 'light' : 'dark');
+  themeBtn.textContent = isDark ? '🌙' : '☀️';
+  localStorage.setItem('theme', isDark ? 'light' : 'dark');
+}
+
+(function initTheme(){
+  const saved = localStorage.getItem('theme') || 'dark';
+  html.setAttribute('data-theme', saved);
+  themeBtn.textContent = saved==='dark' ? '☀️' : '🌙';
+})();
+
+/* ────────────────────────────────────────────────
+   LANGUAGE
+──────────────────────────────────────────────── */
+let currentLang = 'az';
+
+function setLang(lang){
+  currentLang = lang;
+  html.setAttribute('data-lang', lang);
+
+  // Toggle buttons
+  document.getElementById('btnAz').classList.toggle('active', lang==='az');
+  document.getElementById('btnRu').classList.toggle('active', lang==='ru');
+
+  // Update all data-az/data-ru elements
+  document.querySelectorAll('[data-az]').forEach(el=>{
+    const val = el.getAttribute('data-'+lang);
+    if(val !== null) el.innerHTML = val;
+  });
+
+  // Update WhatsApp link message based on language
+  const waBtn = document.getElementById('ctaWa');
+  if(lang==='ru'){
+    waBtn.href = "https://wa.me/994501234567?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%2C%20%D1%85%D0%BE%D1%87%D1%83%20%D1%83%D0%B7%D0%BD%D0%B0%D1%82%D1%8C%20%D0%BF%D0%BE%D0%B4%D1%80%D0%BE%D0%B1%D0%BD%D0%B5%D0%B5%20%D0%BE%D0%B1%20%D0%BE%D0%B1%D1%8A%D0%B5%D0%BA%D1%82%D0%B5%20%23BK-2024.";
+  } else {
+    waBtn.href = "https://wa.me/994501234567?text=Salam%2C%20%23BK-2024%20N%C9%99simi%20h%C9%99y%C9%99t%20evi%20bar%C9%99d%C9%99%20m%C9%99lumat%20almaq%20ist%C9%99yir%C9%99m.";
+  }
+
+  // Re-render tags in new language
+  renderTags();
+
+  // Re-calc mortgage to update labels
+  calcMort();
+
+  localStorage.setItem('lang', lang);
+}
+
+(function initLang(){
+  const saved = localStorage.getItem('lang') || 'az';
+  if(saved==='ru') setLang('ru');
+})();
+
+/* ────────────────────────────────────────────────
+   GALLERY
+──────────────────────────────────────────────── */
+let cur = 0;
+const allSlides = document.querySelectorAll('.slide');
+const track = document.getElementById('slidesTrack');
+const gCounter = document.getElementById('gCounter');
+const gDots = document.getElementById('gDots');
+const thumbStrip = document.getElementById('thumbStrip');
+const total = allSlides.length;
+
+// Build dots & thumbs
+allSlides.forEach((s, i)=>{
+  // Dots
+  const d = document.createElement('span');
+  d.className = 'g-dot'+(i===0?' on':'');
+  d.onclick = ()=> goTo(i);
+  gDots.appendChild(d);
+
+  // Thumbs
+  const img = s.querySelector('img');
+  const th = document.createElement('img');
+  th.className = 'thumb'+(i===0?' on':'');
+  th.src = img.src;
+  th.alt = img.alt;
+  th.onclick = ()=> goTo(i);
+  thumbStrip.appendChild(th);
+});
+
+function goTo(n){
+  allSlides[cur].classList.remove('active');
+  document.querySelectorAll('.g-dot')[cur].classList.remove('on');
+  document.querySelectorAll('.thumb')[cur].classList.remove('on');
+
+  cur = (n+total)%total;
+
+  allSlides[cur].classList.add('active');
+  track.style.transform = `translateX(-${cur*100}%)`;
+
+  document.querySelectorAll('.g-dot')[cur].classList.add('on');
+  document.querySelectorAll('.thumb')[cur].classList.add('on');
+
+  gCounter.textContent = (cur+1)+' / '+total;
+
+  // Scroll active thumb into view
+  const thumbEl = document.querySelectorAll('.thumb')[cur];
+  thumbEl.scrollIntoView({inline:'center',behavior:'smooth'});
+}
+
+function slide(d){ goTo(cur+d); }
+
+// Auto advance
+let autoSlideTimer = setInterval(()=> slide(1), 6000);
+
+// Reset timer on manual interaction
+function resetAutoSlide(){
+  clearInterval(autoSlideTimer);
+  autoSlideTimer = setInterval(()=> slide(1), 6000);
+}
+
+// Override goTo to reset timer
+const _originalGoTo = goTo;
+window.goTo = function(n){
+  _originalGoTo(n);
+  resetAutoSlide();
+};
+window.slide = function(d){
+  goTo(cur+d);
+  resetAutoSlide();
+};
+
+// Swipe support
+let tx=0;
+document.getElementById('galleryWrap').addEventListener('touchstart',e=>{
+  tx=e.changedTouches[0].clientX;
+},{passive:true});
+
+document.getElementById('galleryWrap').addEventListener('touchend',e=>{
+  const d=tx-e.changedTouches[0].clientX;
+  if(Math.abs(d)>40){
+    slide(d>0?1:-1);
+    resetAutoSlide();
+  }
+},{passive:true});
+
+/* ────────────────────────────────────────────────
+   ZOOM ON DOUBLE-CLICK
+──────────────────────────────────────────────── */
+function openZoom(img){
+  const zo = document.getElementById('zoomOverlay');
+  document.getElementById('zoomImg').src = img.src;
+  zo.classList.add('on');
+  document.body.style.overflow='hidden';
+}
+
+function closeZoom(event){
+  // Only close if clicking overlay or close button (not the image itself)
+  if(event && event.target.tagName==='IMG') return;
+  document.getElementById('zoomOverlay').classList.remove('on');
+  document.body.style.overflow='';
+}
+
+// ESC to close zoom
+document.addEventListener('keydown',function(e){
+  if(e.key==='Escape') closeZoom();
+});
+
+/* ────────────────────────────────────────────────
+   STICKY CTA SHOW/HIDE ON SCROLL
+──────────────────────────────────────────────── */
+const ctaArea = document.getElementById('ctaArea');
+let lastY = 0;
+let ticking = false;
+
+window.addEventListener('scroll',()=>{
+  if(!ticking){
+    window.requestAnimationFrame(()=>{
+      const y = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+
+      if(y < 200){
+        ctaArea.classList.remove('hidden');
+      } else if(y >= docHeight - 50){
+        // Near bottom — always show
+        ctaArea.classList.remove('hidden');
+      } else if(y > lastY+8){
+        ctaArea.classList.add('hidden');
+      } else if(y < lastY-8){
+        ctaArea.classList.remove('hidden');
+      }
+
+      lastY = y;
+      ticking = false;
+    });
+    ticking = true;
+  }
+},{passive:true});
+
+/* ────────────────────────────────────────────────
+   MORTGAGE CALCULATOR
+──────────────────────────────────────────────── */
+function calcMort(){
+  const price = 155000;
+  const dp = parseInt(document.getElementById('dpRange').value);
+  const term = parseInt(document.getElementById('termRange').value);
+  const rate = parseFloat(document.getElementById('rateRange').value);
+
+  const loan = price * (1 - dp/100);
+  const r = rate/100/12;
+  const n = term*12;
+
+  let monthly;
+  if(r===0){
+    monthly = loan/n;
+  } else {
+    monthly = loan * (r*Math.pow(1+r,n))/(Math.pow(1+r,n)-1);
+  }
+  const total = monthly*n;
+
+  // Update DP label
+  const dpAmount = Math.round(price*dp/100).toLocaleString();
+  const dpLabel = currentLang==='ru'
+    ? `${dp}% — ${dpAmount} AZN`
+    : `${dp}% — ${dpAmount} AZN`;
+  document.getElementById('dpVal').textContent = dpLabel;
+
+  // Update term label
+  const termLbl = currentLang==='ru' ? `${term} лет` : `${term} il`;
+  document.getElementById('termVal').textContent = termLbl;
+
+  // Update rate label
+  document.getElementById('rateVal').textContent = rate+'%';
+
+  // Update monthly payment
+  document.getElementById('mortMonthly').textContent =
+    Math.round(monthly).toLocaleString()+' AZN';
+
+  // Update detail
+  const creditLbl = currentLang==='ru' ? 'Кредит' : 'Kredit';
+  const totalLbl  = currentLang==='ru' ? 'Итого'  : 'Ümumi';
+  document.getElementById('mortDetail').innerHTML =
+    `${creditLbl}: ${Math.round(loan).toLocaleString()} AZN<br>${totalLbl}: ${Math.round(total).toLocaleString()} AZN`;
+}
+
+// Initial calc
+calcMort();
+
+/* ────────────────────────────────────────────────
+   FEATURES TAGS
+──────────────────────────────────────────────── */
+const featAz = [
+  '🌳 Geniş həyət','🚗 Qapalı qaraj','🛡 Kamera sistemi',
+  '🔥 Mərkəzi istilik','❄️ İnvertor kondisioner','🪵 Parket döşəmə',
+  '🍳 Quraşdırılmış mətbəx','🛁 2 sanitar qovşaq','📡 Fiber internet',
+  '🌿 Bağ-bostan','🔐 Zirehli qapı','📦 Anbar otağı',
+  '🪴 Şüşəbənd eyvan','🧺 Camaşırxana','💧 Artezian quyusu','🔌 Smart ev'
+];
+const featRu = [
+  '🌳 Просторный двор','🚗 Закрытый гараж','🛡 Видеонаблюдение',
+  '🔥 Центр. отопление','❄️ Инверторный кондиц.','🪵 Паркетный пол',
+  '🍳 Встроенная кухня','🛁 2 санузла','📡 Оптоволокно',
+  '🌿 Огород','🔐 Бронированная дверь','📦 Кладовая',
+  '🪴 Застеклённая веранда','🧺 Прачечная','💧 Артезианская скважина','🔌 Умный дом'
+];
+
+const tagsDiv = document.getElementById('tagsDiv');
+function renderTags(){
+  tagsDiv.innerHTML='';
+  const list = currentLang==='ru' ? featRu : featAz;
+  list.forEach(f=>{
+    const t=document.createElement('span');
+    t.className='tag';
+    t.textContent=f;
+    tagsDiv.appendChild(t);
+  });
+}
+renderTags();
+
+/* ────────────────────────────────────────────────
+   SHARE
+──────────────────────────────────────────────── */
+function shareLink(){
+  const url = window.location.href;
+  const title = currentLang==='ru'
+    ? 'Роскошный особняк в центре Баку — 155 000 AZN'
+    : '4 Otaqlı Həyət Evi — 155 000 AZN';
+  if(navigator.share){
+    navigator.share({title, url}).catch(()=>{});
+  } else if(navigator.clipboard){
+    navigator.clipboard.writeText(url).then(showToast).catch(showToast);
+  } else {
+    showToast();
+  }
+}
+
+function showToast(){
+  const t=document.getElementById('toast');
+  t.textContent = currentLang==='ru' ? '🔗 Ссылка скопирована!' : '🔗 Link kopyalandı!';
+  t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'),2600);
+}
+
+/* ────────────────────────────────────────────────
+   VIEWS COUNTER (simulated)
+──────────────────────────────────────────────── */
+document.getElementById('views').textContent = (Math.floor(Math.random()*90)+130);
+</script>
+</body>
+</html>
